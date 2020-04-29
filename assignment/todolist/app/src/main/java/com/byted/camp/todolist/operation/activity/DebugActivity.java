@@ -1,13 +1,12 @@
 package com.byted.camp.todolist.operation.activity;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -49,6 +48,7 @@ public class DebugActivity extends AppCompatActivity {
         permissionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //检测授权
                 int state = ActivityCompat.checkSelfPermission(DebugActivity.this,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE);
                 if (state == PackageManager.PERMISSION_GRANTED) {
@@ -68,12 +68,30 @@ public class DebugActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO 把一段文本写入某个存储区的文件中，再读出来，显示在 fileText 上
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+//                        File file = new File(dir, "test");
+//                        FileUtils.writeContentToFile(file, "#title \ntest content.");
+//                        final List<String> contents = FileUtils.readContentFromFile(file);
+//                        DebugActivity.this.runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                fileText.setText("");
+//                                for (String content : contents) {
+//                                    fileText.append(content + "\n");
+//                                }
+//                            }
+//                        });
+//                    }
+//                }).start();
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-                        File file = new File(dir, "test");
-                        FileUtils.writeContentToFile(file, "#title \ntest content.");
+                        File dir = getExternalFilesDir(null);//获取ExternalPrivate Files目录
+                        File file = new File(dir, "test");//创建test文件
+                        FileUtils.writeContentToFile(file, "Android \n刘翔宇.");
                         final List<String> contents = FileUtils.readContentFromFile(file);
                         DebugActivity.this.runOnUiThread(new Runnable() {
                             @Override

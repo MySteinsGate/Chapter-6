@@ -16,6 +16,41 @@
         android:padding="4dp"
         android:textColor="#1e1e1e" />
 
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="3">
+        <RadioButton
+            android:id="@+id/low_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="低优先级"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+             />
+
+        <RadioButton
+            android:id="@+id/mid_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="中优先级"
+            android:checked="true"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+             />
+
+        <RadioButton
+            android:id="@+id/high_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="高优先级"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+             />
+    </RadioGroup>
+
     <Button
         android:id="@+id/btn_add"
         android:layout_width="match_parent"

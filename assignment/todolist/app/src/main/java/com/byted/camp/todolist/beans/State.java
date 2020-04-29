@@ -15,7 +15,7 @@ public enum State {
     }
 
     public static State from(int intValue) {
-        for (State state : State.values()) {
+        for (State state : State.values()) {    //TODO和DONE
             if (state.intValue == intValue) {
                 return state;
             }
